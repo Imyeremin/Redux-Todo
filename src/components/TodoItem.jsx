@@ -2,16 +2,15 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { removeTodo, toggleTodoComplete } from "../store/todoSlise";
 
-const TodoItem = ({ id, text, completed}) => {
+const TodoItem = ({ id, text, completed }) => {
   const dispatch = useDispatch();
-
 
   return (
     <li>
       <input
         type="checkbox"
         checked={completed}
-        onChange={() => toggleTodoComplete(id)}
+        onChange={() => dispatch(toggleTodoComplete({ id }))}
       />
       <span>{text}</span>
       <span
@@ -20,7 +19,7 @@ const TodoItem = ({ id, text, completed}) => {
           cursor: "pointer",
           marginLeft: "10px",
         }}
-        onClick={() => dispatch(removeTodo({id}))}
+        onClick={() => dispatch(removeTodo({ id }))}
       >
         &times;
       </span>
